@@ -1,0 +1,4 @@
+FROM amaysim/serverless:2.23.0
+
+WORKDIR /opt/app
+COPY . /opt/app/

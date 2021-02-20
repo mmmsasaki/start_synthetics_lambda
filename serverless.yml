@@ -1,0 +1,33 @@
+service: synthetics-start
+frameworkVersion: '2.23.0'
+
+provider:
+  name: aws
+  runtime: go1.x
+  stage: prd
+  region: ap-northeast-1
+  timeout: 300
+  memorySize: 128
+  iamManagedPolicies:
+    - "arn:aws:iam::aws:policy/CloudWatchSyntheticsFullAccess"
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - logs:CreateLogGroup
+        - logs:CreateLogStream
+        - logs:PutLogEvents
+      Resource: "arn:aws:logs:*:*:*"
+  environment:
+    CANARY_NAME: ${env:CANARY_NAME}
+
+package:
+  exclude:
+    - ./**
+  include:
+    - ./bin/**
+
+functions:
+  syntheticsstart:
+    handler: bin/app
+    events:
+      - schedule: cron(32 4 * * ? *)

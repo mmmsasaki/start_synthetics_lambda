@@ -1,0 +1,23 @@
+version: '3'
+services:
+  go:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/go/src/app/:cached
+    security_opt:
+      - seccomp:unconfined
+    env_file:
+      - .env
+
+  sls:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile_sls
+    volumes:
+      - .:/opt/app/:cached
+    security_opt:
+      - seccomp:unconfined
+    env_file:
+      - .env
