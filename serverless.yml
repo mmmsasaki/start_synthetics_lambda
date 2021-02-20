@@ -30,4 +30,4 @@ functions:
   syntheticsstart:
     handler: bin/app
     events:
-      - schedule: cron(32 4 * * ? *)
+      - schedule: cron(0 0 * * ? *)
