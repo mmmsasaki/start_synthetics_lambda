@@ -16,10 +16,16 @@ git clone git@github.com:mmmsasaki/start_synthetics_lambda.git
 cd start_synthetics_lambda
 ```
 
-- `env.sample` ファイルをコピーして、 `.env` を作成し、そこにAWSアクセスキー、Canary名など入力する
+- `env.sample` ファイルをコピーして、 `.env` を作成し、そこにAWSアクセスキー、Canary名を入力する
 
 ```bash
 cp env.sample .env
+```
+
+- docker-compose build
+
+```bash
+docker-compose build
 ```
 
 - デプロイ方法
